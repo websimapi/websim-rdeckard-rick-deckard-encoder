@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>.rdeckard — Rick/Deckard encoder</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+  {
+    "imports": {
+      "pako": "https://cdn.jsdelivr.net/npm/pako@2.1.5/dist/pako.esm.mjs"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="container">
+    <h1>.rdeckard</h1>
+    <p class="muted">Encode any file into a playful Rick/Deckard word stream, or decode one back to its original file. Compression recommended.</p>
+
+    <section class="card">
+      <h2>Encode</h2>
+      <input id="fileIn" type="file" />
+      <label><input id="useGzip" type="checkbox" checked /> gzip compress before encoding</label>
+      <div class="row">
+        <button id="encodeBtn" class="primary">Encode to .rdeckard</button>
+        <a id="downloadLink" class="hidden" download>Download .rdeckard</a>
+      </div>
+      <progress id="encodeProgress" value="0" max="100" class="progress"></progress>
+      <textarea id="encodedPreview" placeholder="Encoded .rdeckard will appear here (truncated)"></textarea>
+    </section>
+
+    <section class="card">
+      <h2>Decode</h2>
+      <input id="rdeckIn" type="file" accept=".rdeckard,text/plain" />
+      <div class="row">
+        <button id="decodeBtn" class="primary">Decode .rdeckard</button>
+        <a id="decodedDownload" class="hidden" download>Save decoded file</a>
+      </div>
+      <progress id="decodeProgress" value="0" max="100" class="progress"></progress>
+      <div id="previewArea"></div>
+    </section>
+
+    <footer class="muted small">Implementation note: large files will use a Web Worker to avoid freezing the UI.</footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+
