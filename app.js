@@ -65,7 +65,8 @@ encodeBtn.addEventListener('click', async ()=>{
   downloadLink.classList.add('hidden');
   encodedPreview.value = '';
   const arrayBuffer = await f.arrayBuffer();
-  worker.postMessage({action:'encode', fileBuf: arrayBuffer, filename: f.name, mime: f.type || 'application/octet-stream', gzip: useGzip.checked}, [arrayBuffer]);
+  // send ArrayBuffer without transfer to avoid it becoming neutered in some environments
+  worker.postMessage({action:'encode', fileBuf: arrayBuffer, filename: f.name, mime: f.type || 'application/octet-stream', gzip: useGzip.checked});
 });
 
 decodeBtn.addEventListener('click', async ()=>{
@@ -78,4 +79,3 @@ decodeBtn.addEventListener('click', async ()=>{
   const txt = await f.text();
   worker.postMessage({action:'decode', text: txt});
 });
-
